@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+  <project name="thrift_hello" default="jar">
+  <property name="name" value="thrift_hello"/>
+  <property name="version" value="1.0"/>
+  <property name="final.name" value="${name}-${version}"/>
+  	
+  <property name="src.dir" value="${basedir}/01_hello_thrift"/>
+  <property name="build.dir" value="${basedir}/build"/>
+  <property name="build.classes" value="${build.dir}/classes"/>
+  <property name="build.src" value="${build.dir}/src"/>
+  <property name="build.encoding" value="ISO-8859-1"/>
+
+  <property name="javac.version" value="1.6"/>
+
+  <path id="classpath">
+    <pathelement location="${build.classes}"/>
+    <fileset dir="${basedir}/../../">
+      <include name="lib/**/*.jar" />
+      <include name="lib/*.jar" />
+    </fileset>
+  </path>
+
+  <target name="init">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.classes}"/>
+    <mkdir dir="${build.src}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <echo message="srcdir:${src.dir}, ${build.src}"/>
+    <javac encoding="${build.encoding}" srcdir="${src.dir};${build.src}"
+      includes="**/*.java" destdir="${build.classes}" 
+      	target="${javac.version}" source="${javac.version}">
+      <classpath refid="classpath"/>
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar jarfile="${build.dir}/${final.name}.jar" basedir="${build.classes}">
+    </jar>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+  </target>
+</project>

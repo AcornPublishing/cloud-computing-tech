@@ -1,0 +1,29 @@
+{
+  "protocol" : "HelloService",
+  "namespace" : "kr.co.jaso.hello.avro.generated",
+  "types" : [ {
+    "type" : "record",
+    "name" : "Greeting",
+    "fields" : [ {
+      "name" : "greetingMessage",
+      "type" : "string"
+    } ]
+  }, {
+    "type" : "error",
+    "name" : "GreetingException",
+    "fields" : [ {
+      "name" : "message",
+      "type" : "string"
+    } ]
+  } ],
+  "messages" : {
+    "hello" : {
+      "request" : [ {
+        "name" : "greeting",
+        "type" : "string"
+      } ],
+      "response" : "Greeting",
+      "errors" : [ "GreetingException" ]
+    }
+  }
+}

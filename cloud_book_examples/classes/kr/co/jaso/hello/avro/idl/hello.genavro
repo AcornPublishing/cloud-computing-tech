@@ -1,0 +1,15 @@
+/**
+ * Avro HelloService Test
+ */
+@namespace("kr.co.jaso.hello.avro.generated")
+protocol HelloService {
+  record Greeting {
+    string greetingMessage;
+  }
+
+  error GreetingException {
+    string message;
+  }
+
+  Greeting hello(string greeting) throws GreetingException; 
+}
